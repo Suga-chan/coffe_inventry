@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>入出庫登録</h2>
+
+<form method="post">
+  <label>品目：</label><br>
+  <select name="product_id">
+    {% for p in products %}
+      <option value="{{ p['product_id'] }}">{{ p['item_name'] }}</option>
+    {% endfor %}
+  </select><br><br>
+
+  <label>入出庫区分：</label><br>
+  <select name="type_id">
+    {% for t in types %}
+      <option value="{{ t['type_id'] }}">{{ t['type_name'] }}</option>
+    {% endfor %}
+  </select><br><br>
+
+  <label>数量：</label><br>
+  <input type="number" name="quantity"><br><br>
+
+  <button type="submit">登録</button>
+</form>
+
+{% if message %}
+  <p style="color:green;">{{ message }}</p>
+{% endif %}
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+{% endblock %}

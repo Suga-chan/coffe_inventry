@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>在庫一覧</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>カテゴリ</th>
+    <th>品名</th>
+    <th>在庫数</th>
+    <th>最小在庫数</th>
+  </tr>
+  {% for p in products %}
+  <tr {% if p["stock_qty"] <= p["min_stock_qty"] %}style="background:#ffe0e0;"{% endif %}>
+    <td>{{ p["product_id"] }}</td>
+    <td>{{ p["category"] }}</td>
+    <td>{{ p["item_name"] }}</td>
+    <td>{{ p["stock_qty"] }}</td>
+    <td>{{ p["min_stock_qty"] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
